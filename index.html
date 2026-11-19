@@ -2861,7 +2861,7 @@ function xpAbre(c) {
   if (document.body.classList.contains('mob')) { const g0 = c.closest('.xg'); if (g0) g0.querySelectorAll('.xp.aberto').forEach(x => x.classList.remove('aberto')); c.classList.add('aberto'); animaBarras(c); return; }
   const g = c.closest('.xg'), gr = g.getBoundingClientRect(), r = c.getBoundingClientRect(), k = gr.width / g.offsetWidth;
   g.querySelectorAll('.xp.aberto').forEach(xpFecha);
-  const ph = document.createElement('div'); ph.className = 'xp-ph'; c.before(ph); c._ph = ph;
+  const ph = document.createElement('div'); ph.className = 'xp-ph'; c.before(ph); c._ph = ph; c._st0 = c.getAttribute('style');
   const de = {left: (r.left - gr.left) / k, top: (r.top - gr.top) / k, width: r.width / k, height: r.height / k};
   Object.assign(c.style, {position: 'absolute', left: de.left + 'px', top: de.top + 'px', width: de.width + 'px', height: de.height + 'px'});
   c._de = de; c.classList.add('aberto'); g.classList.add('foco'); void c.offsetWidth;
@@ -2873,7 +2873,7 @@ function xpFecha(c) {
   const g = c.closest('.xg'), de = c._de; if (!de) return;
   Object.assign(c.style, {left: de.left + 'px', top: de.top + 'px', width: de.width + 'px', height: de.height + 'px'});
   g.classList.remove('foco'); c._de = null;
-  setTimeout(() => { c.classList.remove('aberto'); c.removeAttribute('style'); if (c._ph) { c._ph.remove(); c._ph = null; } }, 420);
+  setTimeout(() => { c.classList.remove('aberto'); if (c._st0 != null) c.setAttribute('style', c._st0); else c.removeAttribute('style'); if (c._ph) { c._ph.remove(); c._ph = null; } }, 420);
 }
 
 /* dica */
